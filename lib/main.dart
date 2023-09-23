@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'Views/home_page.dart';
+import 'Views/tasks_view.dart';
 
 void main() {
   runApp(TaskManagmentApp());
@@ -14,9 +14,9 @@ class TaskManagmentApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        HomePage.id: (context) => HomePage(),
+        TasksView.id: (context) => TasksView(),
       },
-      initialRoute: HomePage.id,
+      initialRoute: TasksView.id,
     );
   }
 }

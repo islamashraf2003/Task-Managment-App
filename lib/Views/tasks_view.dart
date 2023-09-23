@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../Widgets/custom_search_appBar.dart';
 import '../Widgets/custom_text.dart';
 import '../Widgets/custom_appBar.dart';
+import '../Widgets/tasks_list_widget.dart';
 
 //TODO : add elevation button
 /* 
@@ -27,13 +28,25 @@ import '../Widgets/custom_appBar.dart';
             ),
           ),
 */
-class HomePage extends StatelessWidget {
+
+class TasksView extends StatelessWidget {
   static String id = 'HomePage';
-  const HomePage({super.key});
+  const TasksView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Handle onPressed logic here
+        },
+        backgroundColor: Colors.black, // Change the background color
+        shape: RoundedRectangleBorder(
+          // Change the shape to a rounded rectangle
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        child: Icon(Icons.add),
+      ),
       backgroundColor: Color(0xffE2E2E2),
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -56,15 +69,7 @@ class HomePage extends StatelessWidget {
           SliverToBoxAdapter(
             child: CustomAppBar(),
           ),
-          SliverList(delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              return CustomTask(
-                title: 'FLutter ui',
-                subTitle: 'dart and oop',
-                time: '12:10',
-              );
-            },
-          ))
+          TasksList(),
         ],
       ),
     );

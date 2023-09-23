@@ -1,8 +1,22 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class CustomTask extends StatelessWidget {
   final String title, subTitle, time;
   final bool isChecked; // Add a boolean value to manage the checkbox state
+
+  //TODO: FUNCTION TO CHANGE THE COLOR OF CONTUNER
+
+  Color getRandomColor() {
+    Random random = Random();
+    return Color.fromRGBO(
+      random.nextInt(256), // Red channel
+      random.nextInt(256), // Green channel
+      random.nextInt(256), // Blue channel
+      1.0, // Alpha (opacity)
+    );
+  }
 
   const CustomTask({
     Key? key,
@@ -37,7 +51,7 @@ class CustomTask extends StatelessWidget {
               width: 15,
               height: 112,
               decoration: BoxDecoration(
-                color: Colors.red,
+                color: getRandomColor(),
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(12),
                   topLeft: Radius.circular(12),
@@ -46,14 +60,17 @@ class CustomTask extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-          Checkbox(
-            activeColor: Colors.blue.shade500,
-            shape: CircleBorder(),
-            value: isChecked,
-            onChanged: (newValue) {
-              // Handle checkbox state changes here
-              // You can use a callback to update the state in the parent widget
-            },
+          Transform.scale(
+            scale: 1.3, // Adjust the scale factor as needed
+            child: Checkbox(
+              activeColor: Colors.blue.shade500,
+              shape: CircleBorder(),
+              value: isChecked,
+              onChanged: (newValue) {
+                // Handle checkbox state changes here
+                // You can use a callback to update the state in the parent widget
+              },
+            ),
           ),
           Expanded(
             flex: 5,
@@ -82,19 +99,22 @@ class CustomTask extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),
-                  const SizedBox(height: 15),
+                  Divider(
+                    thickness: 1.5,
+                    color: Colors.grey.shade200,
+                  ),
                   Row(
                     children: [
                       Icon(
                         Icons.access_time,
-                        color: Colors.green,
+                        color: Colors.orange.shade800,
                         size: 15,
                       ),
                       const SizedBox(width: 6),
                       Text(
                         'Today ${time} PM',
                         style: TextStyle(
-                          color: Colors.green,
+                          color: Colors.orange.shade800,
                           fontSize: 17,
                         ),
                       ),
