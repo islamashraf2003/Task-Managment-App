@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../Widgets/add_note_bottome_sheet.dart';
 import '../Widgets/custom_search_appBar.dart';
 import '../Widgets/custom_text.dart';
 import '../Widgets/custom_appBar.dart';
@@ -38,11 +39,14 @@ class TasksView extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Handle onPressed logic here
+          showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return AddNoteBottomeSheet();
+              });
         },
-        backgroundColor: Colors.black, // Change the background color
+        backgroundColor: Colors.black,
         shape: RoundedRectangleBorder(
-          // Change the shape to a rounded rectangle
           borderRadius: BorderRadius.circular(16.0),
         ),
         child: Icon(Icons.add),

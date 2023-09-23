@@ -49,7 +49,7 @@ class CustomTask extends StatelessWidget {
             flex: 0,
             child: Container(
               width: 15,
-              height: 112,
+              height: 115,
               decoration: BoxDecoration(
                 color: getRandomColor(),
                 borderRadius: BorderRadius.only(
