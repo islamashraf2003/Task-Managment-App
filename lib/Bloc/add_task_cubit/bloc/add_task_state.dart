@@ -1,7 +1,7 @@
 part of 'add_task_bloc.dart';
 
 @immutable
-class AddTaskState {}
+abstract class AddTaskState {}
 
 class AddTaskInitial extends AddTaskState {}
 
