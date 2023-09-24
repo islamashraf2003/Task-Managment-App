@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
 
-class CutomTextFiled extends StatelessWidget {
+//CutomTextFormFiled
+class CutomTextFormFiled extends StatelessWidget {
   String? hintText;
   int? maxLines;
-  Function(String)? onChanged;
+  void Function(String?)? onSaved;
 
-  CutomTextFiled({this.hintText, this.onChanged, this.maxLines});
+  CutomTextFormFiled({this.hintText, this.onSaved, this.maxLines});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: TextFormField(
+        validator: (value) {
+          if (value?.isEmpty ?? true) {
+            return 'Field is Required';
+          } else {
+            return null;
+          }
+        },
         maxLines: maxLines,
-        onChanged: onChanged,
+        onSaved: onSaved,
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.grey[200],

@@ -11,7 +11,7 @@ class TasksList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverList(
         delegate: SliverChildBuilderDelegate(
-      childCount: 10,
+      childCount: 4,
       (context, index) {
         return CustomTask(
           title: 'FLutter ui',

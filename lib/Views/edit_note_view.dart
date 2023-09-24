@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../Widgets/custom_elevetad_buttom.dart';
 import '../Widgets/custom_icon.dart';
-import '../Widgets/custom_textt_filed.dart';
+import '../Widgets/custom_text_filed.dart';
 
 class EditNoteView extends StatelessWidget {
   const EditNoteView({super.key});
@@ -48,7 +48,7 @@ class EditNoteView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 3),
-            CutomTextFiled(
+            CutomTextFormFiled(
               hintText: 'Add Task Name',
               maxLines: 1,
             ),
@@ -64,7 +64,7 @@ class EditNoteView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 3),
-            CutomTextFiled(
+            CutomTextFormFiled(
               hintText: 'Add Description',
               maxLines: 3,
             ),
