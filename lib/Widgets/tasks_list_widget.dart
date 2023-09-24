@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import 'custom_text.dart';
+import 'custom_tasks.dart';
 
 class TasksList extends StatelessWidget {
   const TasksList({
@@ -11,11 +11,11 @@ class TasksList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverList(
         delegate: SliverChildBuilderDelegate(
-      childCount: 1,
+      childCount: 10,
       (context, index) {
         return CustomTask(
           title: 'FLutter ui',
-          subTitle: 'dart and oop',
+          subTitle: 'dart & oop',
           time: '12:10',
         );
       },

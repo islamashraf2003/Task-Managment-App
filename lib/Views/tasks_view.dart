@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../Widgets/add_note_bottome_sheet.dart';
-import '../Widgets/custom_search_appBar.dart';
-import '../Widgets/custom_text.dart';
-import '../Widgets/custom_appBar.dart';
+import '../Widgets/custom_appBar_widget.dart';
+import '../Widgets/custom_icon.dart';
+import '../Widgets/custom_tasks.dart';
+import '../Widgets/custom_topTitle.dart';
 import '../Widgets/tasks_list_widget.dart';
 
 //TODO : add elevation button
@@ -40,10 +41,14 @@ class TasksView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
-              context: context,
-              builder: (context) {
-                return AddNoteBottomeSheet();
-              });
+            shape: BeveledRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            context: context,
+            builder: (context) {
+              return AddNoteBottomeSheet();
+            },
+          );
         },
         backgroundColor: Colors.black,
         shape: RoundedRectangleBorder(
@@ -52,26 +57,11 @@ class TasksView extends StatelessWidget {
         child: Icon(Icons.add),
       ),
       backgroundColor: Color(0xffE2E2E2),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        elevation: 0.0,
-        title: const Text(
-          'Task Managment App',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 22,
-          ),
-        ),
-        actions: [
-          CustomSearchAppBar(),
-        ],
-      ),
+      appBar: CustomAppBar(), // Use the custom AppBar here
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-            child: CustomAppBar(),
+            child: CustomTopTitle(),
           ),
           TasksList(),
         ],
