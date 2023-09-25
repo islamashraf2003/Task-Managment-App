@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../Bloc/add_task_cubit/cubit/add_tasks_cubit.dart';
+import '../Model/task_model.dart';
 import 'custom_elevetad_buttom.dart';
 import 'custom_text_filed.dart';
 
@@ -121,6 +124,12 @@ class _AddTaskFormState extends State<AddTaskForm> {
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
+                          TaskModel taskModel = TaskModel(
+                              title: title!,
+                              subTitle: subTitle!,
+                              date: DateTime.now().toString());
+                          BlocProvider.of<AddTasksCubit>(context)
+                              .addTask(taskModel);
                         } else {
                           autovalidateMode = AutovalidateMode.always;
                           setState(() {});

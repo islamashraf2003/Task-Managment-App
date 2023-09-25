@@ -9,8 +9,8 @@ import 'Views/tasks_view.dart';
 void main() async {
   Bloc.observer = SimpleBlocObserver();
   await Hive.initFlutter();
-  await Hive.openBox('Tasks_Box');
   Hive.registerAdapter(TaskModelAdapter());
+  await Hive.openBox<TaskModel>('Tasks_Box');
   runApp(const TaskManagmentApp());
 }
 
@@ -19,19 +19,12 @@ class TaskManagmentApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => AddTasksCubit(),
-        ),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        routes: {
-          TasksView.id: (context) => TasksView(),
-        },
-        initialRoute: TasksView.id,
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      routes: {
+        TasksView.id: (context) => TasksView(),
+      },
+      initialRoute: TasksView.id,
     );
   }
 }
