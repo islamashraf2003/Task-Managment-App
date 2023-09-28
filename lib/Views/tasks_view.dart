@@ -1,46 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taskes_app/Bloc/tasks_cubit/tasks_cubit.dart';
 
 import '../Widgets/add_note_bottome_sheet.dart';
 import '../Widgets/custom_appBar_widget.dart';
-import '../Widgets/custom_icon.dart';
-import '../Widgets/custom_tasks.dart';
 import '../Widgets/custom_topTitle.dart';
 import '../Widgets/tasks_list_widget.dart';
 
-//TODO : add elevation button
-/* 
-  ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              elevation: 0.0,
-              backgroundColor: const Color(0xFFD5E8FA),
-              foregroundColor: Colors.blue.shade800,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-            ),
-            onPressed: () {
-              //ToDO : NOT ended ....
-              //ToDO : if i clic here  add a new task .
-            },
-            child: Text(
-              '+ New Task',
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            ),
-          ),
-*/
-
-class TasksView extends StatelessWidget {
+class TasksView extends StatefulWidget {
   static String id = 'HomePage';
   const TasksView({super.key});
 
   @override
+  State<TasksView> createState() => _TasksViewState();
+}
+
+class _TasksViewState extends State<TasksView> {
+  @override
+  void initState() {
+    BlocProvider.of<TasksCubit>(context).featchAllTasks();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
+            isScrollControlled: true,
             shape: BeveledRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),

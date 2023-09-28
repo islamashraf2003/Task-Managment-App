@@ -10,8 +10,9 @@ import 'custom_text_filed.dart';
 class AddTaskForm extends StatefulWidget {
   AddTaskForm({
     super.key,
+    this.isLoading = false,
   });
-
+  final bool isLoading;
   @override
   State<AddTaskForm> createState() => _AddTaskFormState();
 }
@@ -29,13 +30,16 @@ class _AddTaskFormState extends State<AddTaskForm> {
       key: formKey,
       autovalidateMode: autovalidateMode,
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.82,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.only(
+            left: 20,
+            right: 20,
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

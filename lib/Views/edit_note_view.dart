@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taskes_app/Bloc/tasks_cubit/tasks_cubit.dart';
+import 'package:taskes_app/Model/task_model.dart';
 
 import '../Widgets/custom_elevetad_buttom.dart';
-import '../Widgets/custom_icon.dart';
 import '../Widgets/custom_text_filed.dart';
 
-class EditNoteView extends StatelessWidget {
-  const EditNoteView({super.key});
+class EditNoteView extends StatefulWidget {
+  EditNoteView({super.key, required this.taskModel});
+  TaskModel taskModel;
 
+  @override
+  State<EditNoteView> createState() => _EditNoteViewState();
+}
+
+class _EditNoteViewState extends State<EditNoteView> {
+  String? title, subTitle;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,8 +58,11 @@ class EditNoteView extends StatelessWidget {
             ),
             const SizedBox(height: 3),
             CutomTextFormFiled(
-              hintText: 'Add Task Name',
+              hintText: widget.taskModel.title,
               maxLines: 1,
+              onChanged: (data) {
+                title = data;
+              },
             ),
             const SizedBox(height: 10),
             const Text(
@@ -65,8 +77,11 @@ class EditNoteView extends StatelessWidget {
             ),
             const SizedBox(height: 3),
             CutomTextFormFiled(
-              hintText: 'Add Description',
+              hintText: widget.taskModel.subTitle,
               maxLines: 3,
+              onChanged: (data) {
+                subTitle = data;
+              },
             ),
             const SizedBox(height: 35),
             Row(
@@ -88,7 +103,14 @@ class EditNoteView extends StatelessWidget {
                     backgroundColor: Colors.blue.shade800,
                     foregroundColor: Colors.white,
                     textName: 'Done',
-                    onPressed: () {},
+                    onPressed: () {
+                      widget.taskModel.title = title ?? widget.taskModel.title;
+                      widget.taskModel.subTitle =
+                          subTitle ?? widget.taskModel.subTitle;
+                      widget.taskModel.save();
+                      BlocProvider.of<TasksCubit>(context).featchAllTasks();
+                      Navigator.pop(context);
+                    },
                   ),
                 ),
               ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class customElevetedButton extends StatelessWidget {
   VoidCallback? onPressed;
+
   Color? backgroundColor;
   Color? foregroundColor;
   Color? color;
@@ -14,25 +15,27 @@ class customElevetedButton extends StatelessWidget {
   String? textName;
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 14),
-        backgroundColor: backgroundColor,
-        elevation: 0.0,
-        foregroundColor: foregroundColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        side: BorderSide(color: Colors.blue.shade800),
-      ),
-      onPressed: onPressed,
-      child: Text(
-        '$textName',
-        style: TextStyle(
-          color: color,
-          fontSize: 22,
-          fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.only(top: 14, bottom: 14),
+          backgroundColor: backgroundColor,
+          elevation: 0.0,
+          foregroundColor: foregroundColor,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          side: BorderSide(color: Colors.blue.shade800),
+        ),
+        onPressed: onPressed,
+        child: Text(
+          '$textName',
+          style: TextStyle(
+            color: color,
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
   }
 }
-//Sign Up

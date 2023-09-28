@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taskes_app/Bloc/tasks_cubit/tasks_cubit.dart';
 import 'package:taskes_app/simple_bloc_observer.dart';
-import 'Bloc/add_task_cubit/cubit/add_tasks_cubit.dart';
 import 'Model/task_model.dart';
 import 'Views/tasks_view.dart';
 
@@ -19,12 +19,15 @@ class TaskManagmentApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        TasksView.id: (context) => TasksView(),
-      },
-      initialRoute: TasksView.id,
+    return BlocProvider(
+      create: (context) => TasksCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: {
+          TasksView.id: (context) => TasksView(),
+        },
+        initialRoute: TasksView.id,
+      ),
     );
   }
 }

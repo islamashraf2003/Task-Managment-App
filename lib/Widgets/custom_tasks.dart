@@ -1,11 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taskes_app/Bloc/tasks_cubit/tasks_cubit.dart';
+import 'package:taskes_app/Model/task_model.dart';
+import 'package:intl/intl.dart';
 
 import '../Views/edit_note_view.dart';
 
 class CustomTask extends StatelessWidget {
-  final String title, subTitle, time;
   final bool isChecked; // Add a boolean value to manage the checkbox state
 
   //TODO: FUNCTION TO CHANGE THE COLOR OF CONTUNER
@@ -20,20 +23,21 @@ class CustomTask extends StatelessWidget {
     );
   }
 
+  final TaskModel tasksModel;
   const CustomTask({
     Key? key,
-    required this.title,
-    required this.subTitle,
-    required this.time,
-    this.isChecked = true, // Default to unchecked
+    required this.tasksModel,
+    this.isChecked = false, // Default to unchecked
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (_) {
-          return EditNoteView();
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return EditNoteView(
+            taskModel: tasksModel,
+          );
         }));
       },
       child: Container(
@@ -69,14 +73,14 @@ class CustomTask extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             Transform.scale(
-              scale: 1.3, // Adjust the scale factor as needed
+              scale: 1.3,
               child: Checkbox(
                 activeColor: Colors.blue.shade500,
                 shape: CircleBorder(),
                 value: isChecked,
                 onChanged: (newValue) {
-                  // Handle checkbox state changes here
-                  // You can use a callback to update the state in the parent widget
+                  tasksModel.delete();
+                  BlocProvider.of<TasksCubit>(context).featchAllTasks();
                 },
               ),
             ),
@@ -88,7 +92,7 @@ class CustomTask extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '$title',
+                      '${tasksModel.title}',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -99,7 +103,7 @@ class CustomTask extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      '$subTitle',
+                      '${tasksModel.subTitle}',
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 17,
@@ -120,10 +124,17 @@ class CustomTask extends StatelessWidget {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          'Today ${time} PM',
+                          'Time ${DateFormat('h:mm a').format(DateTime.parse(tasksModel.date))} ',
                           style: TextStyle(
                             color: Colors.orange.shade800,
-                            fontSize: 17,
+                            fontSize: 15,
+                          ),
+                        ),
+                        Text(
+                          ', ${DateFormat('EEEE').format(DateTime.parse(tasksModel.date))}',
+                          style: TextStyle(
+                            color: Colors.orange.shade800,
+                            fontSize: 15,
                           ),
                         ),
                       ],

@@ -1,4 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taskes_app/Bloc/tasks_cubit/tasks_cubit.dart';
+import 'package:taskes_app/Model/task_model.dart';
 
 import 'custom_tasks.dart';
 
@@ -9,16 +12,19 @@ class TasksList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverList(
-        delegate: SliverChildBuilderDelegate(
-      childCount: 4,
-      (context, index) {
-        return CustomTask(
-          title: 'FLutter ui',
-          subTitle: 'dart & oop',
-          time: '12:10',
-        );
+    return BlocBuilder<TasksCubit, TasksState>(
+      builder: (context, state) {
+        var tasks = BlocProvider.of<TasksCubit>(context).tasksModel ?? [];
+        return SliverList(
+            delegate: SliverChildBuilderDelegate(
+          childCount: tasks.length,
+          (context, index) {
+            return CustomTask(
+              tasksModel: tasks[index],
+            );
+          },
+        ));
       },
-    ));
+    );
   }
 }

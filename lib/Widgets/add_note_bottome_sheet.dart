@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
+import 'package:taskes_app/Bloc/tasks_cubit/tasks_cubit.dart';
 import '../Bloc/add_task_cubit/cubit/add_tasks_cubit.dart';
 import 'add_task_form.dart';
 
@@ -17,14 +16,18 @@ class AddNoteBottomeSheet extends StatelessWidget {
             print('field: ${state.errorMessage}');
           }
           if (state is AddTaskSucsses) {
+            BlocProvider.of<TasksCubit>(context).featchAllTasks();
             Navigator.pop(context);
           }
         },
         builder: (context, state) {
-          return ModalProgressHUD(
-            inAsyncCall: state is AddTaskLoading ? true : false,
-            child: SingleChildScrollView(child: AddTaskForm()),
-          );
+          return SingleChildScrollView(
+              child: AbsorbPointer(
+            absorbing: state is AddTaskLoading ? true : false,
+            child: AddTaskForm(
+              isLoading: state is AddTaskLoading ? true : false,
+            ),
+          ));
         },
       ),
     );

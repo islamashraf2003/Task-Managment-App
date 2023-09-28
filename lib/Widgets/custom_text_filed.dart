@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 class CutomTextFormFiled extends StatelessWidget {
   String? hintText;
   int? maxLines;
+  void Function(String)? onChanged;
   void Function(String?)? onSaved;
 
-  CutomTextFormFiled({this.hintText, this.onSaved, this.maxLines});
+  CutomTextFormFiled(
+      {this.hintText, this.onSaved, this.maxLines, this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class CutomTextFormFiled extends StatelessWidget {
         },
         maxLines: maxLines,
         onSaved: onSaved,
+        onChanged: onChanged,
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.grey[200],

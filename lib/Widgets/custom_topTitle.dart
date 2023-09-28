@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'custom_icon.dart';
-
 class CustomTopTitle extends StatelessWidget {
   const CustomTopTitle({
     super.key,
