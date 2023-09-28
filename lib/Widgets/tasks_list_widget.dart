@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taskes_app/Bloc/tasks_cubit/tasks_cubit.dart';
-import 'package:taskes_app/Model/task_model.dart';
-
 import 'custom_tasks.dart';
 
 class TasksList extends StatelessWidget {
