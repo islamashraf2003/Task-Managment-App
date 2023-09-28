@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../Bloc/add_task_cubit/cubit/add_tasks_cubit.dart';
 import '../Model/task_model.dart';
 import 'custom_elevetad_buttom.dart';
@@ -13,13 +11,14 @@ class AddTaskForm extends StatefulWidget {
     this.isLoading = false,
   });
   final bool isLoading;
+
   @override
   State<AddTaskForm> createState() => _AddTaskFormState();
 }
 
 class _AddTaskFormState extends State<AddTaskForm> {
   String? title, subTitle;
-
+  int selectedRadioValue = 0;
   final GlobalKey<FormState> formKey = GlobalKey();
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
@@ -105,7 +104,47 @@ class _AddTaskFormState extends State<AddTaskForm> {
                   }
                 },
               ),
-              const SizedBox(height: 35),
+              const SizedBox(height: 7),
+              //TODO: i don't handeld this part ,soooooooon
+              // const Text(
+              //   'Category',
+              //   maxLines: 1,
+              //   overflow: TextOverflow.ellipsis,
+              //   style: TextStyle(
+              //     color: Colors.black,
+              //     fontWeight: FontWeight.bold,
+              //     fontSize: 19,
+              //   ),
+              // ),
+
+              // Row(
+              //   children: [
+              //     Expanded(
+              //       child: RadiWidget(
+              //         title: 'Learing',
+              //         categoryColor: Colors.green,
+              //         value: 1,
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: RadiWidget(
+              //         title: 'Working',
+              //         categoryColor: Colors.blue,
+              //         value: 2,
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: RadiWidget(
+              //         title: 'General',
+              //         categoryColor: Colors.orange,
+              //         value: 3,
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              SizedBox(
+                height: 14,
+              ),
               Row(
                 children: [
                   Expanded(

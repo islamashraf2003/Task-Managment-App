@@ -14,13 +14,16 @@ class CustomTask extends StatelessWidget {
   //TODO: FUNCTION TO CHANGE THE COLOR OF CONTUNER
 
   Color getRandomColor() {
+    List<Color> allowedColors = [
+      Colors.blue,
+      Colors.green,
+      Colors.orange,
+      Colors.red,
+      Color.fromARGB(255, 7, 154, 176),
+      Color.fromARGB(255, 27, 4, 141),
+    ];
     Random random = Random();
-    return Color.fromRGBO(
-      random.nextInt(256), // Red channel
-      random.nextInt(256), // Green channel
-      random.nextInt(256), // Blue channel
-      1.0, // Alpha (opacity)
-    );
+    return allowedColors[random.nextInt(allowedColors.length)];
   }
 
   final TaskModel tasksModel;
