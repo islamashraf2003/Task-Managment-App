@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taskes_app/Bloc/category_color/category_colors_cubit.dart';
 import 'package:taskes_app/Bloc/tasks_cubit/tasks_cubit.dart';
 import 'package:taskes_app/Model/task_model.dart';
 import 'package:intl/intl.dart';
@@ -10,31 +11,29 @@ import '../Views/edit_note_view.dart';
 
 class CustomTask extends StatelessWidget {
   final bool isChecked; // Add a boolean value to manage the checkbox state
-
-  //TODO: FUNCTION TO CHANGE THE COLOR OF CONTUNER
-
-  Color getRandomColor() {
-    List<Color> allowedColors = [
-      Colors.blue,
-      Colors.green,
-      Colors.orange,
-      Colors.red,
-      Color.fromARGB(255, 7, 154, 176),
-      Color.fromARGB(255, 27, 4, 141),
-    ];
-    Random random = Random();
-    return allowedColors[random.nextInt(allowedColors.length)];
-  }
-
   final TaskModel tasksModel;
   const CustomTask({
     Key? key,
     required this.tasksModel,
-    this.isChecked = false, // Default to unchecked
+    this.isChecked = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Color getColor() {
+      if (tasksModel.category == 1) {
+        return Colors.green;
+      }
+      if (tasksModel.category == 2) {
+        return Colors.blue;
+      }
+      if (tasksModel.category == 3) {
+        return Colors.orange;
+      }
+
+      return Colors.white;
+    }
+
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -63,10 +62,10 @@ class CustomTask extends StatelessWidget {
             Expanded(
               flex: 0,
               child: Container(
-                width: 15,
+                width: 17,
                 height: 115,
                 decoration: BoxDecoration(
-                  color: getRandomColor(),
+                  color: getColor(),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(12),
                     topLeft: Radius.circular(12),
@@ -122,21 +121,21 @@ class CustomTask extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.access_time,
-                          color: Colors.orange.shade800,
+                          color: Color.fromARGB(255, 4, 94, 147),
                           size: 15,
                         ),
                         const SizedBox(width: 6),
                         Text(
                           'Time ${DateFormat('h:mm a').format(DateTime.parse(tasksModel.date))} ',
                           style: TextStyle(
-                            color: Colors.orange.shade800,
+                            color: Color.fromARGB(255, 4, 94, 147),
                             fontSize: 15,
                           ),
                         ),
                         Text(
                           ', ${DateFormat('EEEE').format(DateTime.parse(tasksModel.date))}',
                           style: TextStyle(
-                            color: Colors.orange.shade800,
+                            color: Color.fromARGB(255, 4, 94, 147),
                             fontSize: 15,
                           ),
                         ),

@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taskes_app/Bloc/category_color/category_colors_cubit.dart';
 import 'package:taskes_app/Bloc/tasks_cubit/tasks_cubit.dart';
 import 'package:taskes_app/simple_bloc_observer.dart';
 import 'Model/task_model.dart';
@@ -11,6 +14,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(TaskModelAdapter());
   await Hive.openBox<TaskModel>('Tasks_Box');
+
   runApp(const TaskManagmentApp());
 }
 
@@ -19,8 +23,15 @@ class TaskManagmentApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TasksCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CategoryColorsCubit>(
+          create: (context) => CategoryColorsCubit(),
+        ),
+        BlocProvider<TasksCubit>(
+          create: (context) => TasksCubit(),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {

@@ -9,7 +9,14 @@ class TaskModel extends HiveObject {
   @HiveField(1)
   String subTitle;
   @HiveField(2)
-  final date;
+  final String date;
+  @HiveField(3)
+  int? category;
 
-  TaskModel({required this.title, required this.subTitle, required this.date});
+  TaskModel({
+    required this.title,
+    required this.subTitle,
+    required this.date,
+    this.category,
+  });
 }

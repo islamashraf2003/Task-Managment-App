@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taskes_app/Bloc/category_color/category_colors_cubit.dart';
+import 'package:taskes_app/Widgets/radioTitle._widget.dart';
 import '../Bloc/add_task_cubit/cubit/add_tasks_cubit.dart';
 import '../Model/task_model.dart';
 import 'custom_elevetad_buttom.dart';
@@ -20,7 +22,7 @@ class _AddTaskFormState extends State<AddTaskForm> {
   String? title, subTitle;
   int selectedRadioValue = 0;
   final GlobalKey<FormState> formKey = GlobalKey();
-
+  Color containerColor = Colors.white;
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   @override
@@ -106,42 +108,59 @@ class _AddTaskFormState extends State<AddTaskForm> {
               ),
               const SizedBox(height: 7),
               //TODO: i don't handeld this part ,soooooooon
-              // const Text(
-              //   'Category',
-              //   maxLines: 1,
-              //   overflow: TextOverflow.ellipsis,
-              //   style: TextStyle(
-              //     color: Colors.black,
-              //     fontWeight: FontWeight.bold,
-              //     fontSize: 19,
-              //   ),
-              // ),
-
-              // Row(
-              //   children: [
-              //     Expanded(
-              //       child: RadiWidget(
-              //         title: 'Learing',
-              //         categoryColor: Colors.green,
-              //         value: 1,
-              //       ),
-              //     ),
-              //     Expanded(
-              //       child: RadiWidget(
-              //         title: 'Working',
-              //         categoryColor: Colors.blue,
-              //         value: 2,
-              //       ),
-              //     ),
-              //     Expanded(
-              //       child: RadiWidget(
-              //         title: 'General',
-              //         categoryColor: Colors.orange,
-              //         value: 3,
-              //       ),
-              //     ),
-              //   ],
-              // ),
+              const Text(
+                'Category',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 19,
+                ),
+              ),
+              SizedBox(
+                height: 7,
+              ),
+              BlocConsumer<CategoryColorsCubit, CategoryColorsState>(
+                listener: (context, state) {
+                  if (state is CategoryColorsGreen) {
+                    print('greennn');
+                  }
+                  if (state is CategoryColorsBlue) {
+                    print('blueee');
+                  }
+                  if (state is CategoryColorsOrang) {
+                    print('oranggg');
+                  }
+                },
+                builder: (context, state) {
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: RadiWidget(
+                          title: 'Learing',
+                          categoryColor: Colors.green,
+                          value: 1,
+                        ),
+                      ),
+                      Expanded(
+                        child: RadiWidget(
+                          title: 'Working',
+                          categoryColor: Colors.blue,
+                          value: 2,
+                        ),
+                      ),
+                      Expanded(
+                        child: RadiWidget(
+                          title: 'General',
+                          categoryColor: Colors.orange,
+                          value: 3,
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
               SizedBox(
                 height: 14,
               ),
@@ -168,9 +187,12 @@ class _AddTaskFormState extends State<AddTaskForm> {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
                           TaskModel taskModel = TaskModel(
-                              title: title!,
-                              subTitle: subTitle!,
-                              date: DateTime.now().toString());
+                            title: title!,
+                            subTitle: subTitle!,
+                            date: DateTime.now().toString(),
+                            category:
+                                CategoryColorsCubit.get(context).indexColor,
+                          );
                           BlocProvider.of<AddTasksCubit>(context)
                               .addTask(taskModel);
                         } else {
