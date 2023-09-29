@@ -14,8 +14,6 @@ class RadiWidget extends StatelessWidget {
   final String title;
   final int value;
   final Color categoryColor;
-  //todo: try handel this value
-  static int indexColor = 0;
   @override
   Widget build(BuildContext context) {
     final categoryColorsCubit = BlocProvider.of<CategoryColorsCubit>(context);

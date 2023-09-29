@@ -7,8 +7,8 @@ import '../Widgets/custom_elevetad_buttom.dart';
 import '../Widgets/custom_text_filed.dart';
 
 class EditNoteView extends StatefulWidget {
-  EditNoteView({super.key, required this.taskModel});
-  TaskModel taskModel;
+  const EditNoteView({super.key, required this.taskModel});
+  final TaskModel taskModel;
 
   @override
   State<EditNoteView> createState() => _EditNoteViewState();
@@ -56,7 +56,7 @@ class _EditNoteViewState extends State<EditNoteView> {
                 fontSize: 19,
               ),
             ),
-            const SizedBox(height: 3),
+            const SizedBox(height: 5),
             CutomTextFormFiled(
               hintText: widget.taskModel.title,
               maxLines: 1,
@@ -75,7 +75,7 @@ class _EditNoteViewState extends State<EditNoteView> {
                 fontSize: 19,
               ),
             ),
-            const SizedBox(height: 3),
+            const SizedBox(height: 5),
             CutomTextFormFiled(
               hintText: widget.taskModel.subTitle,
               maxLines: 3,
