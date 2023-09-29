@@ -10,7 +10,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.blue.shade800,
       centerTitle: true,
       elevation: 0.0,
-      title: Text(
+      title: const Text(
         'Task Management App',
         style: TextStyle(
           color: Colors.white,
@@ -18,12 +18,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           fontSize: 22,
         ),
       ),
-      actions: [
+      actions: const [
         CustomIconAppBar(icon: Icons.search),
       ],
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

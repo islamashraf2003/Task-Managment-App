@@ -49,7 +49,7 @@ class CustomTask extends StatelessWidget {
               color: Colors.grey.withOpacity(0.3),
               spreadRadius: 2,
               blurRadius: 4,
-              offset: Offset(0, 2),
+              offset: const Offset(0, 2),
             ),
           ],
         ),
@@ -63,7 +63,7 @@ class CustomTask extends StatelessWidget {
                 height: 115,
                 decoration: BoxDecoration(
                   color: getColor(),
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(12),
                     topLeft: Radius.circular(12),
                   ),
@@ -75,7 +75,7 @@ class CustomTask extends StatelessWidget {
               scale: 1.3,
               child: Checkbox(
                 activeColor: Colors.blue.shade500,
-                shape: CircleBorder(),
+                shape: const CircleBorder(),
                 value: isChecked,
                 onChanged: (newValue) {
                   tasksModel.delete();
@@ -94,7 +94,7 @@ class CustomTask extends StatelessWidget {
                       '${tasksModel.title}',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -103,7 +103,7 @@ class CustomTask extends StatelessWidget {
                     const SizedBox(height: 10),
                     Text(
                       '${tasksModel.subTitle}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 17,
                       ),
@@ -116,7 +116,7 @@ class CustomTask extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.access_time,
                           color: Color.fromARGB(255, 4, 94, 147),
                           size: 15,
@@ -124,14 +124,14 @@ class CustomTask extends StatelessWidget {
                         const SizedBox(width: 6),
                         Text(
                           'Time ${DateFormat('h:mm a').format(DateTime.parse(tasksModel.date))} ',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color.fromARGB(255, 4, 94, 147),
                             fontSize: 15,
                           ),
                         ),
                         Text(
                           ', ${DateFormat('EEEE').format(DateTime.parse(tasksModel.date))}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color.fromARGB(255, 4, 94, 147),
                             fontSize: 15,
                           ),

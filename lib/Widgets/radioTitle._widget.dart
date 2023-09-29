@@ -23,7 +23,7 @@ class RadiWidget extends StatelessWidget {
         child: RadioListTile(
           contentPadding: EdgeInsets.zero,
           title: Transform.translate(
-              offset: Offset(-21, 0),
+              offset: const Offset(-21, 0),
               child: Text(
                 '$title',
                 style: TextStyle(

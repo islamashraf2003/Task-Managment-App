@@ -118,9 +118,7 @@ class _AddTaskFormState extends State<AddTaskForm> {
                   fontSize: 19,
                 ),
               ),
-              SizedBox(
-                height: 7,
-              ),
+              const SizedBox(height: 7),
               BlocConsumer<CategoryColorsCubit, CategoryColorsState>(
                 listener: (context, state) {
                   if (state is CategoryColorsGreen) {
@@ -161,9 +159,7 @@ class _AddTaskFormState extends State<AddTaskForm> {
                   );
                 },
               ),
-              SizedBox(
-                height: 14,
-              ),
+              const SizedBox(height: 14),
               Row(
                 children: [
                   Expanded(
